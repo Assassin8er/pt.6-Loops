@@ -17,25 +17,24 @@ namespace pt._6_Loops
                 Console.WriteLine("Enter a Minimum:");
                 if (int.TryParse(Console.ReadLine(), out min))
                 {
-                    Console.WriteLine("Enter a Maximum:");
-                    if (int.TryParse(Console.ReadLine(), out max) && max > min)
-                    {
-                        Console.WriteLine($"Min:{min}, Max:{max}");
-                        done1 = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid Input!");
-                    }
+                    done1 = true;
                 }
                 else
-                {
                     Console.WriteLine("Invalid Input!");
+            }
+            while (!done2)
+            {
+                Console.WriteLine("Enter a Maximum");
+                if (int.TryParse(Console.ReadLine(), out max) && max > min)
+                {
+                    done2 = true;
                 }
+                else
+                    Console.WriteLine("Invalid Input!");
             }
             max = max + 1;
             mid = generator.Next(min, max);
-            while (!done2)
+            while (!done3)
             {
                 Console.WriteLine("Guess the number in-between the maximum and minimum(3 Attempts)");
                 if (int.TryParse(Console.ReadLine(), out ans1) && ans1 >= min && ans1 <= max)
