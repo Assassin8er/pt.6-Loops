@@ -12,10 +12,9 @@ namespace pt._6_Loops
         static void Main(string[] args)
         {
             Random generator = new Random();
-            int min, max, mid, ans1, score, wrong, marknum, i, above70, total;
+            int min = 0, max= 0, mid, ans1 = 0, score = 0, wrong = 0, marknum = 0, i, above70, total, num, sum = 0;
             bool done1 = false; bool done2 = false; bool done3 = false; bool done4 = false; bool done5 = false; bool done6 = false;
             double percentabove70 = 0;
-            min = 0; max = 0; ans1 = 0; score = 0; wrong = 0; marknum = 0;
             while (!done1)//Prompter
             {
                 Console.WriteLine("Enter a Minimum:");
