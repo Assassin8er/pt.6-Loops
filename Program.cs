@@ -12,7 +12,7 @@ namespace pt._6_Loops
         static void Main(string[] args)
         {
             Random generator = new Random();
-            int min = 0, max= 0, mid, ans1 = 0, score = 0, wrong = 0, marknum = 0, i, above70, total, num, sum = 0;
+            int min = 0, max= 0, mid, ans1 = 0, score = 0, wrong = 0, markamt = 0, i, above70, total, num = 0, sum = 0;
             bool done1 = false; bool done2 = false; bool done3 = false; bool done4 = false; bool done5 = false; bool done6 = false;
             double percentabove70 = 0;
             while (!done1)//Prompter
@@ -71,14 +71,14 @@ namespace pt._6_Loops
             while (!done4)// Percent Passing Program
             {
                 Console.WriteLine("Enter number of marks to be inputted(3 Minimum):");
-                if (int.TryParse(Console.ReadLine(), out marknum)&& marknum >= 3)
+                if (int.TryParse(Console.ReadLine(), out markamt)&& markamt >= 3)
                     done4 = true;
                 else
                     Console.WriteLine("Invaild Input! Enter a number eqaul to/greater than 3.");
             }
 
             above70 = 0;
-            for (i = 0; i < marknum; i++) 
+            for (i = 0; i < markamt; i++) 
             {
                 while (!done5)
                 {
@@ -97,9 +97,22 @@ namespace pt._6_Loops
             Thread.Sleep(400);
             Console.WriteLine();
             Console.WriteLine();
-            percentabove70 = (double)above70 / marknum * 100;
-
+            percentabove70 = (double)above70 / markamt * 100;
             Console.WriteLine($"Scores above 70 are {above70}, Percent of scores above 70 is {Math.Round(percentabove70, 2)}%.");
+            Console.WriteLine();
+            while (!done6)// OddSum Program
+            {
+                Console.WriteLine("Enter a Number(Maximum is 10,000)");
+                if (int.TryParse(Console.ReadLine(), out num) && num >= 1 && num <= 10000)
+                    done6 = true;
+                else
+                    Console.WriteLine("Invalid Input!");
+            }
+            for (i = 1; i <= num; i += 2)
+                sum += i;
+            Console.WriteLine($"the sum of odd numbers is:{sum}");
+            
+            
         }
     }
 }
