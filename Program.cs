@@ -1,6 +1,9 @@
 ﻿using System.Reflection.Emit;
 using System;
 using System.Transactions;
+using System.Runtime.InteropServices;
+using static System.Formats.Asn1.AsnWriter;
+using System.Net.Sockets;
 
 namespace pt._6_Loops
 {
@@ -9,9 +12,10 @@ namespace pt._6_Loops
         static void Main(string[] args)
         {
             Random generator = new Random();
-            int min, max, mid, ans1, count;
+            int min, max, mid, ans1, score, wrong, marknum, i, above70, total;
             bool done1 = false; bool done2 = false; bool done3 = false; bool done4 = false; bool done5 = false; bool done6 = false;
-            min = 0; max = 0; ans1 = 0; count = 0;
+            double percentabove70 = 0;
+            min = 0; max = 0; ans1 = 0; score = 0; wrong = 0; marknum = 0;
             while (!done1)//Prompter
             {
                 Console.WriteLine("Enter a Minimum:");
@@ -47,15 +51,15 @@ namespace pt._6_Loops
                     else
                     {
                         Console.WriteLine("Wrong!!!!");
-                        count++;
-                        if (count == 3)
+                        wrong++;
+                        if (wrong == 3)
                         {
                             Console.WriteLine("GAME OVER!");
                             done3 = true;
                         }
-                        else if (count == 2)
+                        else if (wrong == 2)
                             Console.WriteLine("Last Attempt!");
-                        else if (count == 1)
+                        else if (wrong == 1)
                             Console.WriteLine("2 More Attempts!");
                     }
                 }
@@ -63,9 +67,40 @@ namespace pt._6_Loops
                 {
                     Console.WriteLine("Invalid Input!");
                 }
-
+            }
+            Console.WriteLine();
+            while (!done4)// Percent Passing Program
+            {
+                Console.WriteLine("Enter number of marks to be inputted(3 Minimum):");
+                if (int.TryParse(Console.ReadLine(), out marknum)&& marknum >= 3)
+                    done4 = true;
+                else
+                    Console.WriteLine("Invaild Input! Enter a number eqaul to/greater than 3.");
             }
 
+            above70 = 0;
+            for (i = 0; i < marknum; i++) 
+            {
+                while (!done5)
+                {
+                    Console.WriteLine($"enter Mark {i + 1}:");
+                    if (int.TryParse(Console.ReadLine(), out score)&& score >= 0 && score <= 100)
+                        done5 = true;
+                    else
+                        Console.WriteLine("Invalid Input!");
+                }
+                if (score >= 70)
+                    above70++;
+                done5 = false;
+            }
+            Console.WriteLine();
+            Console.WriteLine("Calculating...");
+            Thread.Sleep(400);
+            Console.WriteLine();
+            Console.WriteLine();
+            percentabove70 = (double)above70 / marknum * 100;
+
+            Console.WriteLine($"Scores above 70 are {above70}, Percent of scores above 70 is {Math.Round(percentabove70, 2)}%.");
         }
     }
 }
