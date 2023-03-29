@@ -36,12 +36,13 @@ namespace pt._6_Loops
             mid = generator.Next(min, max);
             while (!done3)
             {
-                Console.WriteLine("Guess the number in-between the maximum and minimum(3 Attempts)");
+                Console.WriteLine("Guess the number in range of the maximum and minimum(3 Attempts)");
                 if (int.TryParse(Console.ReadLine(), out ans1) && ans1 >= min && ans1 <= max)
                 {
                     if (ans1 == mid)
                     {
                         Console.WriteLine("Correct!");
+                        done3 = true;
                     }
                     else
                     {
@@ -50,7 +51,7 @@ namespace pt._6_Loops
                         if (count == 3)
                         {
                             Console.WriteLine("GAME OVER!");
-                            done2 = true;
+                            done3 = true;
                         }
                         else if (count == 2)
                             Console.WriteLine("Last Attempt!");
