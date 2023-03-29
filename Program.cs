@@ -10,14 +10,9 @@ namespace pt._6_Loops
         {
             Random generator = new Random();
             int min, max, mid, ans1, count;
-            bool done1 = false;
-            bool done2 = false;
-            bool done3 = false;
-            bool done4 = false;
-            bool done5 = false;
-            bool done6 = false;
+            bool done1 = false; bool done2 = false; bool done3 = false; bool done4 = false; bool done5 = false; bool done6 = false;
             min = 0; max = 0; ans1 = 0; count = 0;
-            while (!done1)
+            while (!done1)//Prompter
             {
                 Console.WriteLine("Enter a Minimum:");
                 if (int.TryParse(Console.ReadLine(), out min))
@@ -70,6 +65,7 @@ namespace pt._6_Loops
                 }
 
             }
+
         }
     }
 }
