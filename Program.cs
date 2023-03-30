@@ -12,40 +12,42 @@ namespace pt._6_Loops
         static void Main(string[] args)
         {
             Random generator = new Random();
-            int min = 0, max= 0, mid, ans1 = 0, score = 0, wrong = 0, markamt = 0, i, above70, total, num = 0, sum = 0;
-            bool done1 = false; bool done2 = false; bool done3 = false; bool done4 = false; bool done5 = false; bool done6 = false;
+            int min1 = 0, max1= 0, mid, ans1, score = 0, wrong = 0, markamt = 0, i, above70, num = 0, sum = 0, max2 = 0, min2 = 0;
+            bool done = false;
             double percentabove70 = 0;
-            while (!done1)//Prompter
+            while (!done)//Prompter
             {
-                Console.WriteLine("Enter a Minimum:");
-                if (int.TryParse(Console.ReadLine(), out min))
+                Console.WriteLine("Enter a min1imum:");
+                if (int.TryParse(Console.ReadLine(), out min1))
                 {
-                    done1 = true;
+                    done = true;
                 }
                 else
                     Console.WriteLine("Invalid Input!");
             }
-            while (!done2)
+            done = false;
+            while (!done)
             {
                 Console.WriteLine("Enter a Maximum");
-                if (int.TryParse(Console.ReadLine(), out max) && max > min)
+                if (int.TryParse(Console.ReadLine(), out max1) && max1 > min1)
                 {
-                    done2 = true;
+                    done = true;
                 }
                 else
                     Console.WriteLine("Invalid Input!");
             }
-            max = max + 1;
-            mid = generator.Next(min, max);
-            while (!done3)
+            max1 = max1 + 1;
+            mid = generator.Next(min1, max1);
+            done = false;
+            while (!done)
             {
                 Console.WriteLine("Guess the number in range of the maximum and minimum(3 Attempts)");
-                if (int.TryParse(Console.ReadLine(), out ans1) && ans1 >= min && ans1 <= max)
+                if (int.TryParse(Console.ReadLine(), out ans1) && ans1 >= min1 && ans1 <= max1)
                 {
                     if (ans1 == mid)
                     {
                         Console.WriteLine("Correct!");
-                        done3 = true;
+                        done = true;
                     }
                     else
                     {
@@ -54,7 +56,7 @@ namespace pt._6_Loops
                         if (wrong == 3)
                         {
                             Console.WriteLine("GAME OVER!");
-                            done3 = true;
+                            done = true;
                         }
                         else if (wrong == 2)
                             Console.WriteLine("Last Attempt!");
@@ -68,30 +70,32 @@ namespace pt._6_Loops
                 }
             }
             Console.WriteLine();
-            while (!done4)// Percent Passing Program
+            done = false;
+            while (!done)// Percent Passing Program
             {
                 Console.WriteLine("Enter number of marks to be inputted(3 Minimum):");
-                if (int.TryParse(Console.ReadLine(), out markamt)&& markamt >= 3)
-                    done4 = true;
+                if (int.TryParse(Console.ReadLine(), out markamt) && markamt >= 3)
+                    done = true;
                 else
                     Console.WriteLine("Invaild Input! Enter a number eqaul to/greater than 3.");
             }
-
+            done = false;
             above70 = 0;
-            for (i = 0; i < markamt; i++) 
+            for (i = 0; i < markamt; i++)
             {
-                while (!done5)
+                while (!done)
                 {
                     Console.WriteLine($"enter Mark {i + 1}:");
-                    if (int.TryParse(Console.ReadLine(), out score)&& score >= 0 && score <= 100)
-                        done5 = true;
+                    if (int.TryParse(Console.ReadLine(), out score) && score >= 0 && score <= 100)
+                        done = true;
                     else
                         Console.WriteLine("Invalid Input!");
                 }
                 if (score >= 70)
                     above70++;
-                done5 = false;
+                done = false;
             }
+            done = false;
             Console.WriteLine();
             Console.WriteLine("Calculating...");
             Thread.Sleep(400);
@@ -100,18 +104,29 @@ namespace pt._6_Loops
             percentabove70 = (double)above70 / markamt * 100;
             Console.WriteLine($"Scores above 70 are {above70}, Percent of scores above 70 is {Math.Round(percentabove70, 2)}%.");
             Console.WriteLine();
-            while (!done6)// OddSum Program
+            Console.WriteLine("This program adds up all odd numbers from 1 to your number entered.");
+            while (!done)// OddSum Program
             {
                 Console.WriteLine("Enter a Number(Maximum is 10,000)");
                 if (int.TryParse(Console.ReadLine(), out num) && num >= 1 && num <= 10000)
-                    done6 = true;
+                    done = true;
                 else
                     Console.WriteLine("Invalid Input!");
             }
             for (i = 1; i <= num; i += 2)
                 sum += i;
             Console.WriteLine($"the sum of odd numbers is:{sum}");
-            
+            Console.WriteLine();
+            done = false;
+            Console.WriteLine("Enter a new max and min and I will generate 25 numbers within that range");
+            while (!done)
+            {
+                Console.WriteLine("Enter a minimum:");
+                if (int.TryParse(Console.ReadLine(), out min2))
+                    done = true;
+                else
+                    Console.WriteLine("Invalid Input!");
+            }
         }
     }
 }
