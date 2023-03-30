@@ -118,14 +118,29 @@ namespace pt._6_Loops
             Console.WriteLine($"the sum of odd numbers is:{sum}");
             Console.WriteLine();
             done = false;
-            Console.WriteLine("Enter a new max and min and I will generate 25 numbers within that range");
+            Console.WriteLine("Enter a new max and min and I will generate 25 numbers within that range");// Random Numbers
             while (!done)
             {
-                Console.WriteLine("Enter a minimum:");
+                Console.WriteLine("Enter a Minimum:");
                 if (int.TryParse(Console.ReadLine(), out min2))
                     done = true;
                 else
                     Console.WriteLine("Invalid Input!");
+            }
+            done = false;
+            while (!done)
+            {
+                Console.WriteLine("Enter a Maximum");
+                if (int.TryParse(Console.ReadLine(), out max2) && max2 > min2)
+                    done = true;
+                else
+                    Console.WriteLine("Invalid Input!");
+            }
+            Random rand = new Random();
+            for (i = 0;i <= 25 ; i++)
+            {
+                int RandNum = rand.Next(min2, max2 + 1);
+                Console.WriteLine(RandNum);
             }
         }
     }
