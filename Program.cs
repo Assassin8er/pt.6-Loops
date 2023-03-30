@@ -17,7 +17,7 @@ namespace pt._6_Loops
             double percentabove70 = 0;
             while (!done)//Prompter
             {
-                Console.WriteLine("Enter a min1imum:");
+                Console.WriteLine("Enter a minimum:");
                 if (int.TryParse(Console.ReadLine(), out min1))
                 {
                     done = true;
@@ -136,12 +136,14 @@ namespace pt._6_Loops
                 else
                     Console.WriteLine("Invalid Input!");
             }
+            Console.WriteLine();
             Random rand = new Random();
             for (i = 0;i <= 25 ; i++)
             {
                 int RandNum = rand.Next(min2, max2 + 1);
                 Console.WriteLine(RandNum);
             }
+
         }
     }
 }
