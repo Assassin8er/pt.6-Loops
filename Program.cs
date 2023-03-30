@@ -112,7 +112,6 @@ namespace pt._6_Loops
                 sum += i;
             Console.WriteLine($"the sum of odd numbers is:{sum}");
             
-            
         }
     }
 }
