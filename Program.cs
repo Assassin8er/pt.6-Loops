@@ -12,9 +12,14 @@ namespace pt._6_Loops
         static void Main(string[] args)
         {
             Random generator = new Random();
-            int min1 = 0, max1= 0, mid, ans1, score = 0, wrong = 0, markamt = 0, i, above70, num = 0, sum = 0, max2 = 0, min2 = 0;
+            int min1 = 0, max1 = 0, mid, ans1, score = 0, wrong = 0, markamt = 0;
+            int above70, num = 0, sum = 0, max2 = 0, min2 = 0, BetType = 0;
             bool done = false;
-            double percentabove70 = 0;
+            bool done0 = false;
+            bool done1 = false;
+            double percentabove70 = 0, bet = 0, balance = 100.00, win = 0;
+            Die dice1 = new Die();
+            Die dice2 = new Die();
             while (!done)//Prompter
             {
                 Console.WriteLine("Enter a minimum:");
@@ -81,7 +86,7 @@ namespace pt._6_Loops
             }
             done = false;
             above70 = 0;
-            for (i = 0; i < markamt; i++)
+            for (int i = 0; i < markamt; i++)
             {
                 while (!done)
                 {
@@ -113,12 +118,13 @@ namespace pt._6_Loops
                 else
                     Console.WriteLine("Invalid Input!");
             }
-            for (i = 1; i <= num; i += 2)
+            for (int i = 1; i <= num; i += 2)
                 sum += i;
             Console.WriteLine($"the sum of odd numbers is:{sum}");
             Console.WriteLine();
             done = false;
             Console.WriteLine("Enter a new max and min and I will generate 25 numbers within that range");// Random Numbers
+            Console.WriteLine();
             while (!done)
             {
                 Console.WriteLine("Enter a Minimum:");
@@ -138,13 +144,202 @@ namespace pt._6_Loops
             }
             Console.WriteLine();
             Random rand = new Random();
-            for (i = 0; i <= 25; i++)
+            for (int i = 0; i <= 25; i++)
             {
                 int RandNum = rand.Next(min2, max2 + 1);
                 Console.WriteLine(RandNum);
             }
-
-
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Welcome To Dice Game!");
+            while (!done0)
+            {
+                if (balance == 0)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Looks like you cant play anymore! Come again soon!");
+                    done0 = true;
+                }
+                done1 = false;
+                Console.WriteLine("Please enter the # of the following Options");
+                Console.WriteLine(" _______________________");
+                Console.WriteLine("|1:Not Doubles          |");
+                Console.WriteLine("|2:Doubles              |");
+                Console.WriteLine("|3:EvenSum             |");
+                Console.WriteLine("|4:OddSum              |");
+                Console.WriteLine("|5:QUIT                 |");
+                Console.WriteLine("|/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\\\|");
+                if (int.TryParse(Console.ReadLine(), out BetType) && BetType >= 1 && BetType <= 5)
+                {
+                    if (BetType == 1)
+                    {
+                        while (!done1)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("Welcome to \"Not Doubles\". In this game you win by rolling non matching die.");
+                            Console.WriteLine($"You Currently have ${Math.Round(balance, 2)}");
+                            Console.WriteLine("Enter Your Bet:");
+                            if (double.TryParse(Console.ReadLine(), out bet) && bet <= balance && bet >= 0)
+                            {
+                                Console.WriteLine("Rolling...");
+                                Thread.Sleep(1000);
+                                dice1.RollDie();
+                                dice2.RollDie();
+                                dice1.DrawRoll();
+                                dice2.DrawRoll();
+                                if (dice1.Roll != dice2.Roll)
+                                {
+                                    win = bet / 2;
+                                    Console.WriteLine($"You won :{Math.Round(win, 2)}$");
+                                    balance = balance + win;
+                                    done1 = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"You Lost:${Math.Round(bet, 2)}");
+                                    Console.WriteLine("Better Luck Next Time!");
+                                    Console.WriteLine();
+                                    balance = balance - bet;
+                                    done1 = true;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input! try again.");
+                            }
+                        }
+                    }
+                    else if (BetType == 2)
+                    {
+                        while (!done1)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("Welcome to \"Doubles\". In this game you win by rolling DOUBLES.");
+                            Console.WriteLine($"You Currently have ${Math.Round(balance, 2)}");
+                            Console.WriteLine("Enter Your Bet:");
+                            if (double.TryParse(Console.ReadLine(), out bet) && bet <= balance && bet >= 0)
+                            {
+                                Console.WriteLine("Rolling...");
+                                Thread.Sleep(1000);
+                                dice1.RollDie();
+                                dice2.RollDie();
+                                dice1.DrawRoll();
+                                dice2.DrawRoll();
+                                if (dice1.Roll == dice2.Roll)
+                                {
+                                    win = bet * 2;
+                                    Console.WriteLine($"You won :{Math.Round(win, 2)}$");
+                                    balance = balance + win;
+                                    done1 = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"You Lost:${Math.Round(bet, 2)}");
+                                    Console.WriteLine("Better Luck Next Time!");
+                                    Console.WriteLine();
+                                    balance = balance - bet;
+                                    done1 = true;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input! try again.");
+                            }
+                        }
+                    }
+                    else if (BetType == 3)
+                    {
+                        while (!done1)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("Welcome to \"EvenSum\". In this game you win by rolling an even number.");
+                            Console.WriteLine($"You Currently have ${Math.Round(balance, 2)}");
+                            Console.WriteLine("Enter Your Bet:");
+                            if (double.TryParse(Console.ReadLine(), out bet) && bet <= balance && bet >= 0)
+                            {
+                                Console.WriteLine("Rolling...");
+                                Thread.Sleep(1000);
+                                dice1.RollDie();
+                                dice2.RollDie();
+                                int Sum = dice1.Roll + dice2.Roll;
+                                dice1.DrawRoll();
+                                dice2.DrawRoll();
+                                if (Sum % 2 == 0)
+                                {
+                                    win = bet;
+                                    Console.WriteLine($"You won :{Math.Round(win, 2)}$");
+                                    balance = balance + win;
+                                    done1 = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"You Lost:${Math.Round(bet, 2)}");
+                                    Console.WriteLine("Better Luck Next Time!");
+                                    Console.WriteLine();
+                                    balance = balance - bet;
+                                    done1 = true;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input! try again.");
+                            }
+                        }
+                    }
+                    else if (BetType == 4)
+                    {
+                        while (!done1)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("Welcome to \"OddSum\". In this game you win by rolling an odd number.");
+                            Console.WriteLine($"You Currently have ${Math.Round(balance, 2)}");
+                            Console.WriteLine("Enter Your Bet:");
+                            if (double.TryParse(Console.ReadLine(), out bet) && bet <= balance && bet >= 0)
+                            {
+                                Console.WriteLine("Rolling...");
+                                Thread.Sleep(1000);
+                                dice1.RollDie();
+                                dice2.RollDie();
+                                int Sum = dice1.Roll + dice2.Roll;
+                                dice1.DrawRoll();
+                                dice2.DrawRoll();
+                                if (Sum % 2 == 0)
+                                {
+                                    Console.WriteLine($"You Lost:${Math.Round(bet, 2)}");
+                                    Console.WriteLine("Better Luck Next Time!");
+                                    Console.WriteLine();
+                                    balance = balance - bet;
+                                    done1 = true;
+                                }
+                                else
+                                {
+                                    win = bet;
+                                    Console.WriteLine($"You won :{Math.Round(win, 2)}$");
+                                    balance = balance + win;
+                                    done1 = true;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input! try again.");
+                            }
+                        }
+                    }
+                    else if (BetType == 5)
+                    {
+                        Console.WriteLine("Have a good day!");
+                        Thread.Sleep(200);
+                        done0 = true;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("INVALID INPUT!");
+                }
+            }
         }
     }
 }
