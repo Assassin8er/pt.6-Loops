@@ -305,19 +305,19 @@ namespace pt._6_Loops
                                 int Sum = dice1.Roll + dice2.Roll;
                                 dice1.DrawRoll();
                                 dice2.DrawRoll();
-                                if (Sum % 2 == 0)
+                                if (Sum % 2 == 1)
+                                {
+                                    win = bet;
+                                    Console.WriteLine($"You won :{Math.Round(win, 2)}$");
+                                    balance = balance + win;
+                                    done1 = true;
+                                }
+                                else
                                 {
                                     Console.WriteLine($"You Lost:${Math.Round(bet, 2)}");
                                     Console.WriteLine("Better Luck Next Time!");
                                     Console.WriteLine();
                                     balance = balance - bet;
-                                    done1 = true;
-                                }
-                                else
-                                {
-                                    win = bet;
-                                    Console.WriteLine($"You won :{Math.Round(win, 2)}$");
-                                    balance = balance + win;
                                     done1 = true;
                                 }
                             }
